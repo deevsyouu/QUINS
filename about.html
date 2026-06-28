@@ -1,0 +1,173 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- Header banner -->
+<section class="page-header">
+    <div class="container">
+        <h1 class="page-title"><span class="gradient-text">About Kenya Harlequin FC</span></h1>
+        <p class="page-subtitle">Learn about our heritage, our home venue at Ngong Road, and the partners supporting us.</p>
+    </div>
+</section>
+
+<!-- History timeline section -->
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">Our Rich Heritage</h2>
+        <p style="color: var(--text-secondary); margin-bottom: 2rem; max-width: 800px; line-height: 1.7;">
+            Kenya Harlequin Football Club is one of the most successful and decorated rugby clubs in East Africa. Our history is deeply linked to the development of the sport in the region.
+        </p>
+
+        <div class="history-timeline">
+            <!-- Timeline Item 1 -->
+            <div class="timeline-item">
+                <div class="timeline-year">1923</div>
+                <h3 style="font-family: 'Outfit'; font-size: 1.2rem; margin-bottom: 0.5rem;">Early Beginnings</h3>
+                <p style="color: var(--text-secondary); font-size: 0.95rem; max-width: 700px;">
+                    Following a split in the Nairobi District Team, the first iteration of the Harlequins rugby club was formed in Nairobi. They played matches against early colonial settlements and visiting naval ships.
+                </p>
+            </div>
+
+            <!-- Timeline Item 2 -->
+            <div class="timeline-item">
+                <div class="timeline-year">1952</div>
+                <h3 style="font-family: 'Outfit'; font-size: 1.2rem; margin-bottom: 0.5rem;">Official Affiliation</h3>
+                <p style="color: var(--text-secondary); font-size: 0.95rem; max-width: 700px;">
+                    Led by Peter Barron and Ben Cook, the club was formally established and secured an official affiliation with Harlequin F.C. in London. They were granted permission to wear the iconic multi-colored quarters and badge.
+                </p>
+            </div>
+
+            <!-- Timeline Item 3 -->
+            <div class="timeline-item">
+                <div class="timeline-year">1964</div>
+                <h3 style="font-family: 'Outfit'; font-size: 1.2rem; margin-bottom: 0.5rem;">The Inaugural Christie 7s</h3>
+                <p style="color: var(--text-secondary); font-size: 0.95rem; max-width: 700px;">
+                    The club hosted the first ever Christie 7s tournament, named in honor of Alex "Sandy" Milne Christie, a past President of Kenya Harlequins and RFUEA. Today, it is Africa's oldest 7s tournament.
+                </p>
+            </div>
+
+            <!-- Timeline Item 4 -->
+            <div class="timeline-item">
+                <div class="timeline-year">2026</div>
+                <h3 style="font-family: 'Outfit'; font-size: 1.2rem; margin-bottom: 0.5rem;">Modern Era</h3>
+                <p style="color: var(--text-secondary); font-size: 0.95rem; max-width: 700px;">
+                    With 8 Kenya Cup trophies and countless local cups, Quins continues to build its legacy at the RFUEA Grounds. We are actively expanding women's programs and youth academies.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sponsors details -->
+<section class="section" style="background: rgba(18, 18, 20, 0.4);">
+    <div class="container">
+        <h2 class="section-title">Our Partners</h2>
+        <p style="color: var(--text-secondary); margin-bottom: 3rem; max-width: 700px;">
+            The support of our partners makes it possible for us to maintain world-class training facilities and host tournaments.
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; text-align: center;">
+            {% for sponsor in sponsors %}
+            <div class="glass" style="padding: 2.5rem; border-radius: 12px; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 160px; transition: var(--transition-smooth); border: 1.5px solid var(--color-border);">
+                <div style="font-family: 'Outfit'; font-size: 1.6rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.5rem;">
+                    {{ sponsor.name }}
+                </div>
+                <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--quins-magenta);">
+                    {{ sponsor.text }}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Contact Form & Venue details -->
+<section class="section" style="border-bottom: none;">
+    <div class="container">
+        <div class="interaction-grid">
+            
+            <!-- Contact form -->
+            <div class="form-panel glass">
+                <h2 class="form-title"><i class="fa-regular fa-envelope" style="color: var(--quins-magenta); margin-right: 0.5rem;"></i>Send a Message</h2>
+                <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem;">
+                    Do you have a question about membership, club hire, or corporate sponsorship? Get in touch.
+                </p>
+
+                <div id="contact-success" class="notification notification-success" style="display: none;"></div>
+
+                <form id="contact-form" onsubmit="handleContact(event)">
+                    <div class="form-group">
+                        <label class="form-label" for="con-name">Full Name <span>*</span></label>
+                        <input type="text" id="con-name" class="form-control" required placeholder="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="con-email">Email Address <span>*</span></label>
+                        <input type="email" id="con-email" class="form-control" required placeholder="john.doe@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="con-subject">Subject</label>
+                        <input type="text" id="con-subject" class="form-control" placeholder="Sponsorship Inquiry">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="con-message">Message <span>*</span></label>
+                        <textarea id="con-message" class="form-control" required placeholder="How can we help you?"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Send Message</button>
+                </form>
+            </div>
+
+            <!-- Venue Details and Map Mock -->
+            <div class="form-panel glass" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <h2 class="form-title"><i class="fa-solid fa-location-crosshairs" style="color: var(--quins-blue); margin-right: 0.5rem;"></i>Our Home Grounds</h2>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.6;">
+                        Kenya Harlequins hosts all home matches at the <strong>RFUEA Grounds</strong>, located along Ngong Road in Nairobi. It is the spiritual home of Kenyan rugby.
+                    </p>
+                    
+                    <div style="margin-bottom: 1.5rem;">
+                        <h4 style="font-family: 'Outfit'; margin-bottom: 0.25rem;">Club Address:</h4>
+                        <div style="font-size: 0.9rem; color: var(--text-secondary);">
+                            RFUEA Grounds, Ngong Road<br>
+                            P.O. Box 40001 - 00100<br>
+                            Nairobi, Kenya
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stylized Mock Map using CSS grid -->
+                <div class="glass" style="height: 200px; border-radius: 8px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.4); border-color: var(--color-border-hover);">
+                    <div style="position: absolute; inset: 0; display: grid; grid-template-columns: repeat(8, 1fr); grid-template-rows: repeat(8, 1fr); opacity: 0.15; pointer-events: none;">
+                        {% for i in range(64) %}
+                        <div style="border: 0.5px solid white;"></div>
+                        {% endfor %}
+                    </div>
+                    <div style="text-align: center; z-index: 2;">
+                        <i class="fa-solid fa-map-location-dot fa-3x" style="color: var(--quins-magenta); margin-bottom: 0.75rem;"></i>
+                        <h4 style="font-family: 'Outfit'; font-size: 1.1rem; color: white;">RFUEA Grounds Ngong Road</h4>
+                        <span style="font-size: 0.75rem; color: var(--quins-blue); font-weight: 700; text-transform: uppercase;">Map View</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    function handleContact(e) {
+        e.preventDefault();
+        const successDiv = document.getElementById('contact-success');
+        successDiv.innerText = "Thank you for getting in touch! We will respond to your email shortly.";
+        successDiv.style.display = "block";
+        document.getElementById('contact-form').reset();
+        
+        // Hide notification after 5 seconds
+        setTimeout(() => {
+            successDiv.style.display = "none";
+        }, 5000);
+    }
+</script>
+{% endblock %}

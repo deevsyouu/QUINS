@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- Header banner -->
+<section class="page-header">
+    <div class="container">
+        <h1 class="page-title"><span class="gradient-text">Meet the Teams</span></h1>
+        <p class="page-subtitle">The warriors representing Kenya Harlequin Football Club in regional leagues and national tournaments.</p>
+    </div>
+</section>
+
+<!-- Roster Roster Section -->
+<section class="section">
+    <div class="container">
+        
+        <!-- Tab Selectors -->
+        <div class="squad-tabs-container">
+            <div class="squad-tabs">
+                <button type="button" class="squad-tab-btn active" id="tab-mens" onclick="switchSquad('mens')">Men's First XV</button>
+                <button type="button" class="squad-tab-btn" id="tab-womens" onclick="switchSquad('womens')">Women's Queens</button>
+            </div>
+        </div>
+
+        <!-- Men's Roster Grid -->
+        <div class="roster-grid" id="grid-mens">
+            {% for player in squads.mens %}
+            <div class="player-card glass">
+                <div class="player-img-wrapper">
+                    <div class="player-avatar" style="display: flex; align-items: center; justify-content: center; color: var(--text-secondary);">
+                        <i class="fa-solid fa-user-ninja fa-2x"></i>
+                    </div>
+                </div>
+                <div class="player-number">#{{ player.number }}</div>
+                <h3 class="player-name">{{ player.name }}</h3>
+                <div class="player-pos">{{ player.position }}</div>
+                <p class="player-story">{{ player.story }}</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Women's Roster Grid (Hidden by Default) -->
+        <div class="roster-grid" id="grid-womens" style="display: none;">
+            {% for player in squads.womens %}
+            <div class="player-card glass">
+                <div class="player-img-wrapper" style="background: linear-gradient(135deg, var(--quins-blue) 0%, var(--quins-magenta) 50%, var(--quins-white) 100%);">
+                    <div class="player-avatar" style="display: flex; align-items: center; justify-content: center; color: var(--text-secondary);">
+                        <i class="fa-solid fa-user-ninja fa-2x"></i>
+                    </div>
+                </div>
+                <div class="player-number" style="color: var(--quins-blue);">#{{ player.number }}</div>
+                <h3 class="player-name">{{ player.name }}</h3>
+                <div class="player-pos">{{ player.position }}</div>
+                <p class="player-story">{{ player.story }}</p>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    function switchSquad(squad) {
+        // Toggle buttons
+        const btnMens = document.getElementById('tab-mens');
+        const btnWomens = document.getElementById('tab-womens');
+        
+        // Toggle grids
+        const gridMens = document.getElementById('grid-mens');
+        const gridWomens = document.getElementById('grid-womens');
+
+        if (squad === 'mens') {
+            btnMens.classList.add('active');
+            btnWomens.classList.remove('active');
+            gridMens.style.display = 'grid';
+            gridWomens.style.display = 'none';
+        } else {
+            btnWomens.classList.add('active');
+            btnMens.classList.remove('active');
+            gridWomens.style.display = 'grid';
+            gridMens.style.display = 'none';
+        }
+    }
+</script>
+{% endblock %}

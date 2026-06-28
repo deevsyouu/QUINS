@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- Header banner -->
+<section class="page-header">
+    <div class="container">
+        <h1 class="page-title"><span class="gradient-text">Official Club Merchandise</span></h1>
+        <p class="page-subtitle">Wear your colors with pride. Support Quins on matchdays in official gear.</p>
+    </div>
+</section>
+
+<!-- Shop Catalog Section -->
+<section class="section">
+    <div class="container">
+        
+        <!-- Ordering Guide Notice -->
+        <div class="glass" style="padding: 2rem; border-radius: 12px; border-color: var(--quins-magenta); margin-bottom: 3rem; display: flex; gap: 2rem; align-items: center; flex-wrap: wrap;">
+            <div style="background: rgba(224, 0, 92, 0.1); width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--quins-magenta);">
+                <i class="fa-solid fa-cart-shopping fa-2x"></i>
+            </div>
+            <div style="flex-grow: 1; min-width: 250px;">
+                <h3 style="font-family: 'Outfit'; margin-bottom: 0.25rem;">How to Order</h3>
+                <p style="color: var(--text-secondary); font-size: 0.9rem; max-width: 800px;">
+                    1. Select your item, size, and fit options below.<br>
+                    2. Send payment via <strong>Safaricom Send Money</strong> to <strong>0727655622</strong>.<br>
+                    3. Click "Order via WhatsApp" to automatically share your payment receipt, size selection, and delivery address. Delivery in Nairobi is completed within 24 hours.
+                </p>
+            </div>
+        </div>
+
+        <div class="shop-grid">
+            {% for item in items %}
+            <div class="shop-card glass">
+                <div class="shop-img-box">
+                    {% if item.id == 'jersey_replica' %}
+                    <!-- Render a stylized CSS representation of the quarters jersey -->
+                    <div class="jersey-graphic">
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr); width: 100%; height: 100%; border-radius: 8px; overflow: hidden;">
+                            <div style="background-color: var(--quins-chocolate);"></div>
+                            <div style="background-color: var(--quins-white); color: black; display: flex; align-items: center; justify-content: center; font-size: 0.5rem; font-weight: 800;">QUINS</div>
+                            <div style="background-color: var(--quins-blue);"></div>
+                            <div style="background-color: var(--quins-magenta);"></div>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div style="color: var(--text-muted); text-align: center;">
+                        <i class="fa-solid fa-shirt fa-4x" style="opacity: 0.15; margin-bottom: 1rem;"></i>
+                    </div>
+                    {% endif %}
+                </div>
+                
+                <div class="shop-card-content">
+                    <div>
+                        <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem;">{{ item.name }}</h3>
+                        <p style="color: var(--text-secondary); font-size: 0.85rem; line-height: 1.5; min-height: 45px;">
+                            {{ item.description }}
+                        </p>
+                        <div class="shop-item-price">{{ item.price }}</div>
+                    </div>
+                    
+                    <div class="shop-details-form">
+                        {% if item.sizes %}
+                        <div style="display: flex; gap: 0.5rem; flex-direction: column;">
+                            <label style="font-size: 0.75rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">Size</label>
+                            <select id="size-{{ item.id }}" class="form-control" style="padding: 0.4rem 1rem; font-size: 0.85rem; background-color: var(--color-bg-dark);">
+                                {% for s in item.sizes %}
+                                <option value="{{ s }}">{{ s }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        {% endif %}
+
+                        {% if item.options %}
+                        <div style="display: flex; gap: 0.5rem; flex-direction: column; margin-top: 0.5rem;">
+                            <label style="font-size: 0.75rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">Style/Fit</label>
+                            <select id="option-{{ item.id }}" class="form-control" style="padding: 0.4rem 1rem; font-size: 0.85rem; background-color: var(--color-bg-dark);">
+                                {% for opt in item.options %}
+                                <option value="{{ opt }}">{{ opt }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        {% endif %}
+                        
+                        <button type="button" onclick="placeOrder('{{ item.name }}', '{{ item.price }}', '{{ item.id }}')" class="btn btn-primary" style="margin-top: 1.2rem; width: 100%; gap: 0.5rem;">
+                            <i class="fa-brands fa-whatsapp"></i> Order via WhatsApp
+                        </button>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    function placeOrder(itemName, itemPrice, itemId) {
+        // Fetch selected sizes/options
+        const sizeEl = document.getElementById('size-' + itemId);
+        const optionEl = document.getElementById('option-' + itemId);
+        
+        const size = sizeEl ? sizeEl.value : 'N/A';
+        const option = optionEl ? optionEl.value : 'N/A';
+        
+        // Build whatsapp text message
+        const baseMsg = `Hello Kenya Harlequin FC Shop! I would like to order:
+- Item: ${itemName}
+- Price: ${itemPrice}
+- Size: ${size}
+- Option/Style: ${option}
+
+Please guide me on delivery. I am preparing the Safaricom payment.`;
+        
+        const encodedMsg = encodeURIComponent(baseMsg);
+        const whatsappNumber = '254727655622'; // Official shop number
+        
+        // Open in new tab
+        window.open(`https://wa.me/${whatsappNumber}?text=${encodedMsg}`, '_blank');
+    }
+</script>
+{% endblock %}

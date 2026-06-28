@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- Header banner -->
+<section class="page-header">
+    <div class="container">
+        <h1 class="page-title"><span class="gradient-text">Fixtures & Results</span></h1>
+        <p class="page-subtitle">Track our journey. Mark your calendars for upcoming matches or check past scorelines.</p>
+    </div>
+</section>
+
+<!-- Match Center Section -->
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">Upcoming Fixtures</h2>
+        
+        <div class="fixtures-list">
+            {% for match in matches %}
+            <div class="fixture-row glass">
+                <div class="fixture-comp">{{ match.competition }}</div>
+                <div class="fixture-teams">Quins <span style="color: var(--quins-magenta);">vs</span> {{ match.opponent }}</div>
+                <div class="fixture-date-time">
+                    <div><i class="fa-regular fa-calendar-days" style="margin-right: 0.4rem;"></i>{{ match.date }}</div>
+                    <div style="font-size: 0.8rem; margin-top: 0.2rem;"><i class="fa-regular fa-clock" style="margin-right: 0.4rem;"></i>{{ match.time }}</div>
+                </div>
+                <div class="fixture-venue">
+                    <i class="fa-solid fa-location-dot" style="margin-right: 0.4rem;"></i>{{ match.venue }}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <h2 class="section-title" style="margin-top: 5rem;">Recent Results</h2>
+        <div class="fixtures-list">
+            
+            <!-- Mock Past Result 1 -->
+            <div class="fixture-row glass" style="opacity: 0.8;">
+                <div class="fixture-comp">Kenya Cup</div>
+                <div class="fixture-teams">
+                    Quins <span style="color: var(--quins-green); font-weight: 800;">24</span> &ndash; 21 Kabras Sugar
+                </div>
+                <div class="fixture-date-time">
+                    <div><i class="fa-regular fa-calendar-days" style="margin-right: 0.4rem;"></i>June 18, 2026</div>
+                </div>
+                <div class="fixture-venue" style="color: var(--quins-green); font-weight: 700;">
+                    <i class="fa-solid fa-trophy" style="margin-right: 0.4rem;"></i>Win (Home)
+                </div>
+            </div>
+
+            <!-- Mock Past Result 2 -->
+            <div class="fixture-row glass" style="opacity: 0.8;">
+                <div class="fixture-comp">Kenya Cup</div>
+                <div class="fixture-teams">
+                    Strathmore Leos 12 &ndash; <span style="color: var(--quins-green); font-weight: 800;">31</span> Quins
+                </div>
+                <div class="fixture-date-time">
+                    <div><i class="fa-regular fa-calendar-days" style="margin-right: 0.4rem;"></i>June 11, 2026</div>
+                </div>
+                <div class="fixture-venue" style="color: var(--quins-green); font-weight: 700;">
+                    <i class="fa-solid fa-trophy" style="margin-right: 0.4rem;"></i>Win (Away)
+                </div>
+            </div>
+
+            <!-- Mock Past Result 3 -->
+            <div class="fixture-row glass" style="opacity: 0.8;">
+                <div class="fixture-comp">Enterprise Cup</div>
+                <div class="fixture-teams">
+                    Quins 18 &ndash; <span style="color: var(--quins-magenta); font-weight: 800;">22</span> Nondescripts RFC
+                </div>
+                <div class="fixture-date-time">
+                    <div><i class="fa-regular fa-calendar-days" style="margin-right: 0.4rem;"></i>June 04, 2026</div>
+                </div>
+                <div class="fixture-venue" style="color: var(--quins-magenta); font-weight: 700;">
+                    <i class="fa-solid fa-circle-xmark" style="margin-right: 0.4rem;"></i>Loss (Home)
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}

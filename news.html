@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- Header banner -->
+<section class="page-header">
+    <div class="container">
+        <h1 class="page-title"><span class="gradient-text">Club News & Announcements</span></h1>
+        <p class="page-subtitle">Stay up-to-date with match match analyses, club schedules, tournaments, and official statements.</p>
+    </div>
+</section>
+
+<!-- News Archive Section -->
+<section class="section">
+    <div class="container">
+        
+        <!-- Search query feedback -->
+        {% if search_query %}
+        <div style="margin-bottom: 2rem; color: var(--text-secondary);">
+            <i class="fa-solid fa-circle-info" style="color: var(--quins-blue); margin-right: 0.5rem;"></i>
+            Showing search results for "<strong>{{ search_query }}</strong>". <a href="{{ url_for('news') }}" style="color: var(--quins-magenta); margin-left: 0.5rem; text-decoration: underline;">Clear search</a>
+        </div>
+        {% endif %}
+
+        {% if news %}
+        <div class="news-list-grid">
+            {% for article in news %}
+            <article class="news-list-item glass" id="article-{{ article.id }}">
+                <div class="news-list-img-box">
+                    <div style="padding: 2.5rem; color: white;">
+                        <i class="fa-solid fa-newspaper fa-4x" style="opacity: 0.2; margin-bottom: 1.5rem;"></i>
+                        <h3 style="font-family: 'Outfit'; font-size: 1.4rem;">{{ article.title }}</h3>
+                    </div>
+                </div>
+                <div class="news-list-content">
+                    <span class="news-date"><i class="fa-regular fa-calendar" style="margin-right: 0.4rem;"></i>{{ article.date }}</span>
+                    <h2 style="font-size: 1.8rem; margin: 0.5rem 0 1rem; line-height: 1.2;">{{ article.title }}</h2>
+                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 1rem; line-height: 1.7;">
+                        {{ article.content }}
+                    </p>
+                    <div style="display: flex; gap: 1rem; align-items: center;">
+                        <span style="font-size: 0.85rem; color: var(--text-muted);">Posted by: <strong>Quins Media Team</strong></span>
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="glass" style="padding: 4rem; text-align: center; border-radius: 12px; color: var(--text-muted);">
+            <i class="fa-solid fa-magnifying-glass fa-3x" style="margin-bottom: 1.5rem; color: var(--quins-magenta);"></i>
+            <h3>No articles found</h3>
+            <p style="margin-top: 0.5rem;">We couldn't find any news articles matching your search. Try different keywords or browse all announcements.</p>
+            <a href="{{ url_for('news') }}" class="btn btn-primary" style="margin-top: 1.5rem;">View All News</a>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+{% endblock %}

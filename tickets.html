@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- Header banner -->
+<section class="page-header">
+    <div class="container">
+        <h1 class="page-title"><span class="gradient-text">Matchday Tickets</span></h1>
+        <p class="page-subtitle">Secure your spot at the RFUEA Grounds. Be part of the roaring crowd.</p>
+    </div>
+</section>
+
+<!-- Tickets Listings Section -->
+<section class="section">
+    <div class="container">
+        
+        <!-- Flagship Tournament Ticket Drop -->
+        <div class="glass" style="padding: 3rem; border-radius: 12px; border-color: var(--quins-blue); margin-bottom: 4rem; position: relative; overflow: hidden;">
+            <div style="position: absolute; top: -10px; right: -10px; background: var(--quins-magenta); color: white; padding: 1.5rem 3rem 0.5rem; transform: rotate(45deg); font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em;">
+                Flagship
+            </div>
+            
+            <div style="max-width: 700px;">
+                <span class="team-badge" style="background-color: var(--quins-blue); margin-bottom: 1rem;">Tournament Tickets</span>
+                <h2 style="font-size: 2.2rem; line-height: 1.2; margin-bottom: 1rem; font-family: 'Outfit';">Christie 7s 2026 Ticket Drop</h2>
+                <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 2rem;">
+                    The 61st edition of Africa's premier rugby 7s club tournament returns this August. Access matches for Division 1, Division 2, Women's 7s, Under-16s, and the legendary Golden Oldies. Enjoy refreshing food, drinks, and DJs at the festival zones.
+                </p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem;">
+                    <div class="glass" style="padding: 0.75rem 1.5rem; border-radius: 8px; text-align: center;">
+                        <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 700;">DATES</div>
+                        <div style="font-weight: 700; color: var(--quins-blue);">August 15 &ndash; 16, 2026</div>
+                    </div>
+                    <div class="glass" style="padding: 0.75rem 1.5rem; border-radius: 8px; text-align: center;">
+                        <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 700;">VENUE</div>
+                        <div style="font-weight: 700; color: var(--text-primary);">RFUEA Grounds, Nairobi</div>
+                    </div>
+                </div>
+                
+                <a href="https://mookh.com/event/christie-7s-2025" target="_blank" class="btn btn-accent" style="gap: 0.5rem;">
+                    <i class="fa-solid fa-ticket"></i> Buy Tickets on Mookh
+                </a>
+            </div>
+        </div>
+
+        <!-- Regular season tickets -->
+        <h2 class="section-title">Regular Season Tickets</h2>
+        <div class="shop-grid">
+            
+            <!-- Ticket Type 1 -->
+            <div class="shop-card glass">
+                <div class="shop-img-box">
+                    <div style="text-align: center; color: var(--quins-magenta);">
+                        <i class="fa-solid fa-ticket-simple fa-4x" style="opacity: 0.2;"></i>
+                    </div>
+                </div>
+                <div class="shop-card-content">
+                    <div>
+                        <h3 style="font-size: 1.25rem;">General Admission</h3>
+                        <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 0.5rem; line-height: 1.5;">
+                            Access to the main stands and food courts for a single Kenya Cup matchday at the RFUEA Grounds.
+                        </p>
+                        <div class="shop-item-price">KES 500</div>
+                    </div>
+                    <a href="https://mookh.com/" target="_blank" class="btn btn-primary" style="margin-top: 1.5rem; width: 100%;">Get General Ticket</a>
+                </div>
+            </div>
+
+            <!-- Ticket Type 2 -->
+            <div class="shop-card glass">
+                <div class="shop-img-box">
+                    <div style="text-align: center; color: var(--quins-blue);">
+                        <i class="fa-solid fa-crown fa-4x" style="opacity: 0.2;"></i>
+                    </div>
+                </div>
+                <div class="shop-card-content">
+                    <div>
+                        <h3 style="font-size: 1.25rem;">VIP Executive Lounge</h3>
+                        <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 0.5rem; line-height: 1.5;">
+                            Access to the reserved covered stand, complimentary drinks, lunch, and meet-and-greet with legends.
+                        </p>
+                        <div class="shop-item-price">KES 2,500</div>
+                    </div>
+                    <a href="https://mookh.com/" target="_blank" class="btn btn-accent" style="margin-top: 1.5rem; width: 100%;">Get VIP Ticket</a>
+                </div>
+            </div>
+
+            <!-- Ticket Type 3 -->
+            <div class="shop-card glass">
+                <div class="shop-img-box">
+                    <div style="text-align: center; color: var(--quins-green);">
+                        <i class="fa-solid fa-id-card-clip fa-4x" style="opacity: 0.2;"></i>
+                    </div>
+                </div>
+                <div class="shop-card-content">
+                    <div>
+                        <h3 style="font-size: 1.25rem;">Club Season Pass</h3>
+                        <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 0.5rem; line-height: 1.5;">
+                            Access to all 2026 home fixtures (Kenya Cup, Enterprise Cup, Floodies) and exclusive member merchandise.
+                        </p>
+                        <div class="shop-item-price">KES 5,000</div>
+                    </div>
+                    <a href="https://mookh.com/" target="_blank" class="btn btn-secondary" style="margin-top: 1.5rem; width: 100%;">Buy Season Pass</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}
